@@ -253,14 +253,15 @@ func GetAnnouncementByRooms(c *gin.Context) {
 }
 
 func GetAnnouncementByID(c *gin.Context) {
-	
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "неверный ID объявления"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Неверный ID объявления"})
 		return
 	}
 
-	userID := c.GetUint(userIDCtx)
+	// Получаем ID пользователя из контекста (должен быть добавлен в middleware)
+	userID := c.GetUint("userID") // допустим, что пользователь аутентифицирован
+
 	announcement, err := service.GetAnnouncementByID(id, userID)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})

@@ -49,7 +49,6 @@ func RunRoutes() error {
 		announcementG.PUT("/:id", UpdateAnnouncement)
 		announcementG.GET(":id", GetAnnouncementByID)
 		announcementG.GET("/count_apart/:count_apart", GetAnnouncementByRooms)
-		announcementG.GET("/views/report/:id", GetViewsReport)
 		announcementG.POST("/review", CreateReview)
 		announcementG.GET("/reviews/:id", GetReviews)
 		announcementG.POST("/favorite/:id", AddToFavorites)

@@ -16,7 +16,7 @@ type Announcement struct {
 	CreatedBy         int       `json:"created_by" gorm:"not null"`
 	CreatedAt         time.Time `json:"created_at" gorm:"autoCreateTime"`
 	UpdatedAt         time.Time `json:"updated_at" gorm:"autoUpdateTime"`
-	ViewCount     int64     `json:"view_count" gorm:"-"` 
+	ViewCount         int64       `json:"view_count" gorm:"view_count"`
 }
 
 type AnnouncementFilterForUpdate struct {
@@ -32,15 +32,7 @@ type AnnouncementFilterForUpdate struct {
 }
 
 type AnnouncementView struct {
-	ID            uint      `json:"id" gorm:"primary_key"`
-	AnnouncementID uint     `json:"announcement_id"`
-	UserID        uint      `json:"user_id"`
-	
+	ID             uint `json:"id" gorm:"primary_key"`
+	AnnouncementID uint `json:"announcement_id"`
+	UserID         uint `json:"user_id"`
 }
-
-
-
-
-
-
-

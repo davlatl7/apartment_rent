@@ -55,7 +55,13 @@ func GetAnnouncementsByRooms(rooms uint) (announcements []models.Announcement, e
 }
 
 func GetAnnouncementByID(id int, userID uint) (*models.Announcement, error) {
-	return repository.GetAnnouncementByID(id, userID)
+	// Вызываем функцию репозитория для получения объявления
+	announcement, err := repository.GetAnnouncementByID(id, userID)
+	if err != nil {
+		return nil, err
+	}
+
+	return announcement, nil
 }
 
 func UpdateAnnouncement(id int, annUpdate models.AnnouncementFilterForUpdate) (*models.Announcement, error) {
