@@ -1,0 +1,802 @@
+basePath: /
+definitions:
+  controllers.ErrorResponse:
+    properties:
+      error:
+        type: string
+    type: object
+  controllers.accessTokenResponse:
+    properties:
+      access_token:
+        type: string
+    type: object
+  controllers.defaultResponse:
+    properties:
+      message:
+        type: string
+    type: object
+  models.Announcement:
+    properties:
+      comment:
+        type: string
+      count_apart:
+        type: integer
+      created_at:
+        type: string
+      created_by:
+        type: integer
+      district:
+        type: string
+      floor:
+        type: integer
+      id:
+        type: integer
+      pets:
+        type: string
+      phone:
+        type: string
+      price:
+        type: integer
+      square_meters:
+        type: integer
+      typeofdevelopment:
+        type: string
+      updated_at:
+        type: string
+      view_count:
+        type: integer
+    type: object
+  models.AnnouncementFilterForUpdate:
+    properties:
+      comment:
+        type: string
+      count_apart:
+        type: integer
+      district:
+        type: string
+      floor:
+        type: integer
+      pets:
+        type: string
+      phone:
+        type: string
+      price:
+        type: integer
+      square_meters:
+        type: integer
+      typeofdevelopment:
+        type: string
+    type: object
+  models.Review:
+    properties:
+      announcement_id:
+        type: integer
+      content:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: integer
+      rating:
+        type: integer
+      user_id:
+        type: integer
+    type: object
+  models.SignInInput:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  models.SwagUser:
+    properties:
+      full_name:
+        type: string
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  models.User:
+    properties:
+      created_at:
+        type: string
+      full_name:
+        type: string
+      id:
+        type: integer
+      is_blocked:
+        type: boolean
+      is_deleted:
+        type: boolean
+      password:
+        type: string
+      role:
+        type: string
+      updated_at:
+        type: string
+      username:
+        type: string
+    type: object
+  models.View:
+    properties:
+      announcement_id:
+        type: integer
+      created_at:
+        type: string
+      id:
+        type: integer
+      user_id:
+        type: integer
+    type: object
+host: localhost:8181
+info:
+  contact: {}
+  description: API Server for Apartment_rent Application
+  title: Apartment_rent API
+  version: "1.0"
+paths:
+  /announcements:
+    get:
+      description: get list of all announcements
+      operationId: get-all-announcements
+      parameters:
+      - description: fill if you need search
+        in: query
+        name: q
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Announcement'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            type: "404"
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get All Announcement
+      tags:
+      - announcements
+    post:
+      consumes:
+      - application/json
+      description: create new announcement
+      operationId: create-announcement
+      parameters:
+      - description: new announcement info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Announcement'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.defaultResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: "404"
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Create Announcement
+      tags:
+      - announcements
+  /announcements/{id}:
+    delete:
+      description: delete an existing announcement
+      operationId: delete-announcement
+      parameters:
+      - description: id of the announcement to delete
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.defaultResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: "404"
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Delete Announcement
+      tags:
+      - announcements
+    put:
+      consumes:
+      - application/json
+      description: Update an existing announcement, only if it was created by the
+        current user
+      operationId: update-announcement
+      parameters:
+      - description: id of the announcement
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: announcement update info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.AnnouncementFilterForUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Announcement'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Update Announcement
+      tags:
+      - announcements
+  /announcements/{id}/favorite:
+    post:
+      consumes:
+      - application/json
+      description: Retrieves a list of favorite announcements for the authenticated
+        user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of favorite announcements
+          schema:
+            items:
+              $ref: '#/definitions/models.Announcement'
+            type: array
+        "500":
+          description: 'error: failed to get favorites'
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get favorite announcements
+      tags:
+      - favorites
+  /announcements/{id}/review:
+    post:
+      consumes:
+      - application/json
+      description: Adds a review to a specific announcement
+      parameters:
+      - description: Announcement ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Review Body
+        in: body
+        name: review
+        required: true
+        schema:
+          $ref: '#/definitions/models.Review'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: 'message: review created successfully'
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: 'error: invalid request'
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: 'error: failed to create review'
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Create a review for an announcement
+      tags:
+      - review
+  /announcements/{id}/views/report:
+    get:
+      consumes:
+      - application/json
+      description: Retrieves the total number of views for a specific announcement
+      parameters:
+      - description: Announcement ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of views
+          schema:
+            items:
+              $ref: '#/definitions/models.View'
+            type: array
+        "400":
+          description: 'error: invalid announcement ID'
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: 'error: failed to get report'
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get views report for an announcement
+      tags:
+      - view annoncements
+  /announcements/{price}:
+    get:
+      description: get announcements by price
+      operationId: get-announcement-by-price
+      parameters:
+      - description: number of price in the announcement
+        in: path
+        name: rooms
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Announcement'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            type: "404"
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get Announcements By Price
+      tags:
+      - announcements
+  /announcements/count_apart/{count_apart}:
+    get:
+      description: get announcements by number of rooms
+      operationId: get-announcement-by-rooms
+      parameters:
+      - description: number of rooms in the announcement
+        in: path
+        name: rooms
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Announcement'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            type: "404"
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get Announcements By Number of Rooms
+      tags:
+      - announcements
+  /announcements/reviews/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Adds a review to a specific announcement
+      parameters:
+      - description: Announcement ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Review Body
+        in: body
+        name: review
+        required: true
+        schema:
+          $ref: '#/definitions/models.Review'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: 'message: review created successfully'
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: 'error: invalid request'
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: 'error: failed to create review'
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Create a review for an announcement
+      tags:
+      - review
+  /auth/sign-in:
+    post:
+      consumes:
+      - application/json
+      description: sign in to account
+      operationId: sign-in-to-account
+      parameters:
+      - description: sign-in info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.SignInInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.accessTokenResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: "404"
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      summary: SignIn
+      tags:
+      - auth
+  /auth/sign-up:
+    post:
+      consumes:
+      - application/json
+      description: create account
+      operationId: create-account
+      parameters:
+      - description: account info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.SwagUser'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.defaultResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: "404"
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      summary: SignUp
+      tags:
+      - auth
+  /favorites:
+    get:
+      consumes:
+      - application/json
+      description: Retrieves a list of favorite announcements for the authenticated
+        user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of favorite announcements
+          schema:
+            items:
+              $ref: '#/definitions/models.Announcement'
+            type: array
+        "500":
+          description: 'error: failed to get favorites'
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Get favorite announcements
+      tags:
+      - favorites
+  /users:
+    get:
+      description: get list of all users
+      operationId: get-all-users
+      parameters:
+      - description: fill if you need search
+        in: query
+        name: q
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.User'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            type: "404"
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get All Users
+      tags:
+      - users
+    post:
+      consumes:
+      - application/json
+      description: create new user
+      operationId: create-user
+      parameters:
+      - description: new user info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.defaultResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: "404"
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Create User
+      tags:
+      - users
+  /users/{id}:
+    delete:
+      description: delete an existing user
+      operationId: delete-user
+      parameters:
+      - description: id of the user to delete
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.defaultResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: "404"
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Delete User
+      tags:
+      - users
+    get:
+      description: get user by id
+      operationId: get-user-by-id
+      parameters:
+      - description: number of id user
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.User'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            type: "404"
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get User By ID
+      tags:
+      - users
+    put:
+      consumes:
+      - application/json
+      description: update existed user
+      operationId: update-user
+      parameters:
+      - description: id of the users
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: user update info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.defaultResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: "404"
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Update User
+      tags:
+      - users
+  /users/{id}/block:
+    post:
+      consumes:
+      - application/json
+      description: Blocks a specific user by their ID
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'message: user blocked successfully'
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: 'error: failed to block user'
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Block a user
+      tags:
+      - users
+swagger: "2.0"
