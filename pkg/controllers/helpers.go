@@ -25,6 +25,8 @@ type ErrorResponse struct {
 	Error string `json:"error"`
 }
 
+
+/*
 func newErrorResponse(message string) ErrorResponse {
 	return ErrorResponse{
 		Error: message,
@@ -44,3 +46,4 @@ func newDefaultResponse(message string) defaultResponse {
 type accessTokenResponse struct {
 	AccessToken string `json:"access_token"`
 }
+	*/
