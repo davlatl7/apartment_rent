@@ -1,0 +1,31 @@
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (3 handlers)
+[GIN-debug] GET    /ping                     --> apartment_rent/pkg/controllers.PingPong (3 handlers)
+[GIN-debug] POST   /auth/sign-up             --> apartment_rent/pkg/controllers.SignUp (3 handlers)
+[GIN-debug] POST   /auth/sign-in             --> apartment_rent/pkg/controllers.SignIn (3 handlers)
+[GIN-debug] DELETE /announcements/delete/:id --> apartment_rent/pkg/controllers.DeleteAnnouncement (4 handlers)
+[GIN-debug] DELETE /announcements/review/:id --> apartment_rent/pkg/controllers.DeleteReview (4 handlers)
+[GIN-debug] GET    /users                    --> apartment_rent/pkg/controllers.GetAllUsers (4 handlers)
+[GIN-debug] GET    /users/:id                --> apartment_rent/pkg/controllers.GetUserByID (4 handlers)
+[GIN-debug] POST   /users                    --> apartment_rent/pkg/controllers.CreateUser (4 handlers)
+[GIN-debug] PUT    /users/:id                --> apartment_rent/pkg/controllers.UpdateUser (4 handlers)
+[GIN-debug] DELETE /users/:id                --> apartment_rent/pkg/controllers.DeleteUser (4 handlers)
+[GIN-debug] POST   /users/block/:id          --> apartment_rent/pkg/controllers.BlockUser (4 handlers)
+[GIN-debug] GET    /announcements            --> apartment_rent/pkg/controllers.GetAllAnnouncement (4 handlers)
+[GIN-debug] GET    /announcements/price/:price --> apartment_rent/pkg/controllers.GetAnnouncementByPrice (4 handlers)
+[GIN-debug] POST   /announcements            --> apartment_rent/pkg/controllers.CreateAnnouncement (4 handlers)
+[GIN-debug] PUT    /announcements/:id        --> apartment_rent/pkg/controllers.UpdateAnnouncement (4 handlers)
+[GIN-debug] GET    /announcements/:id        --> apartment_rent/pkg/controllers.GetAnnouncementByID (4 handlers)
+[GIN-debug] GET    /announcements/count_apart/:count_apart --> apartment_rent/pkg/controllers.GetAnnouncementByRooms (4 handlers)
+[GIN-debug] POST   /announcements/review     --> apartment_rent/pkg/controllers.CreateReview (4 handlers)
+[GIN-debug] GET    /announcements/reviews/:id --> apartment_rent/pkg/controllers.GetReviews (4 handlers)
+[GIN-debug] POST   /announcements/favorite/:id --> apartment_rent/pkg/controllers.AddToFavorites (4 handlers)
+[GIN-debug] GET    /announcements/favorites  --> apartment_rent/pkg/controllers.GetFavorites (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on localhost:8181
