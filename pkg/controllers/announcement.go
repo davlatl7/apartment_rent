@@ -259,8 +259,7 @@ func GetAnnouncementByID(c *gin.Context) {
 		return
 	}
 
-	// Получаем ID пользователя из контекста (должен быть добавлен в middleware)
-	userID := c.GetUint("userID") // допустим, что пользователь аутентифицирован
+	userID := c.GetUint("userID") 
 
 	announcement, err := service.GetAnnouncementByID(id, userID)
 	if err != nil {

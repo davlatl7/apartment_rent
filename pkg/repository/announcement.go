@@ -74,8 +74,6 @@ func GetAnnouncementsByRooms(rooms uint) (announcements []models.Announcement, e
 
 func GetAnnouncementByID(id int, userID uint) (*models.Announcement, error) {
 	var announcement models.Announcement
-
-	// Получаем объявление по ID
 	err := db.GetDBConn().Where("id = ?", id).First(&announcement).Error
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
@@ -84,21 +82,18 @@ func GetAnnouncementByID(id int, userID uint) (*models.Announcement, error) {
 		return nil, err
 	}
 
-	// Проверяем, смотрел ли пользователь это объявление
 	var view models.AnnouncementView
 	err = db.GetDBConn().Where("announcement_id = ? AND user_id = ?", id, userID).First(&view).Error
 
 	if errors.Is(err, gorm.ErrRecordNotFound) {
-		// Пользователь еще не просматривал объявление, увеличиваем счётчик
+		
 		announcement.ViewCount++
 
-		// Сохраняем обновлённый счётчик просмотров
 		err = db.GetDBConn().Model(&announcement).Update("view_count", announcement.ViewCount).Error
 		if err != nil {
 			return nil, err
 		}
 
-		// Создаём запись о просмотре для данного пользователя
 		view = models.AnnouncementView{
 			AnnouncementID: uint(id),
 			UserID:         userID,
@@ -108,11 +103,10 @@ func GetAnnouncementByID(id int, userID uint) (*models.Announcement, error) {
 			return nil, err
 		}
 	} else if err != nil {
-		// В случае другой ошибки
+		
 		return nil, err
 	}
 
-	// Возвращаем объявление с актуальным количеством просмотров
 	return &announcement, nil
 }
 

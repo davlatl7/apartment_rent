@@ -71,7 +71,18 @@ func GetReviews(c *gin.Context) {
 
 	c.JSON(http.StatusOK, reviews)
 }
-
+// DeleteReview godoc
+// @Summary Create a review for an announcement
+// @Description Delete a review to a specific announcement
+// @Tags review
+// @Accept json
+// @Produce json
+// @Param id path uint true "Announcement ID"
+// @Param review body models.Review true "Review Body"
+// @Success 201 {object} map[string]string "message: review created successfully"
+// @Failure 400 {object} map[string]string "error: invalid request"
+// @Failure 500 {object} map[string]string "error: failed to create review"
+// @Router /announcements/review/{id} [delete]
 func DeleteReview(c *gin.Context) {
 	
 	reviewIDStr := c.Param("id")
