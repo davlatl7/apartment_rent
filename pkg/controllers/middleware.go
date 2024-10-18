@@ -71,6 +71,7 @@ func checkUserAuthentication(c *gin.Context) {
 	c.Set(userIsDeletedCtx, claims.IsDeleted)
 	c.Next()
 }
+/*
 func checkUserAuthentication1(c *gin.Context) {
 	header := c.GetHeader(authorizationHeader)
 
@@ -111,3 +112,4 @@ func checkUserAuthentication1(c *gin.Context) {
 	c.Set(userRoleCtx, claims.Role)
 	c.Next()
 }
+	*/
