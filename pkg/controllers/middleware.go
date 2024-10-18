@@ -12,6 +12,7 @@ const (
 	authorizationHeader = "Authorization"
 	userIDCtx           = "userID"
 	userRoleCtx         = "userRole"
+	userIsDeletedCtx    = "userIsDeleted"
 )
 
 func checkUserAuthentication(c *gin.Context) {
@@ -46,17 +47,30 @@ func checkUserAuthentication(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
 		return
 	}
+
 	fmt.Println(claims)
-	if claims.Role != "admin"{
-		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
-			"error": "only the admin can get the list of users",
+
+	// Проверка на заблокированного пользователя
+	if claims.IsDeleted {
+		c.AbortWithStatusJSON(http.StatusForbidden, gin.H{
+			"error": "user is deleted",
 		})
-	}	
+		return
+	}
+
+	// Проверка роли пользователя
+	if claims.Role != "admin" {
+		c.AbortWithStatusJSON(http.StatusForbidden, gin.H{
+			"error": "only admin can access this resource",
+		})
+		return
+	}
+
 	c.Set(userIDCtx, claims.UserID)
 	c.Set(userRoleCtx, claims.Role)
+	c.Set(userIsDeletedCtx, claims.IsDeleted)
 	c.Next()
 }
-
 func checkUserAuthentication1(c *gin.Context) {
 	header := c.GetHeader(authorizationHeader)
 
@@ -97,6 +111,3 @@ func checkUserAuthentication1(c *gin.Context) {
 	c.Set(userRoleCtx, claims.Role)
 	c.Next()
 }
-
-
-

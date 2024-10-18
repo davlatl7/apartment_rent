@@ -14,15 +14,17 @@ type CustomClaims struct {
 	UserID   uint   `json:"user_id"`
 	Role     string `json:"role"`
 	Username string `json:"username"`
+	IsDeleted bool  `json:"is_deleted"`
 	jwt.StandardClaims
 }
 
 // GenerateToken генерирует JWT токен с кастомными полями
-func GenerateToken(userID int, username string, role string) (string, error) {
+func GenerateToken(userID int, username string, role string, isDeleted bool) (string, error) {
 	claims := CustomClaims{
 		UserID:   uint(userID),
 		Username: username,
 		Role:     role,
+		IsDeleted: isDeleted,
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: time.Now().Add(time.Minute * 60).Unix(), // токен истекает через 1 час
 			Issuer:    configs.AppSettings.AppParams.ServerName,

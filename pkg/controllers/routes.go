@@ -41,7 +41,7 @@ func RunRoutes() error {
 		userG.POST("/block/:id", BlockUser)
 		
 	}
-	announcementG := router.Group("/announcements",checkUserAuthentication1)
+	announcementG := router.Group("/announcements",checkUserAuthentication)
 	{
 		announcementG.GET("", GetAllAnnouncement)
 		announcementG.GET("/price/:price", GetAnnouncementByPrice)

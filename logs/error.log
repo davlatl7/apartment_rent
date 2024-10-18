@@ -1,0 +1,2 @@
+ERROR: 2024/09/27 18:06:05 users.go:31: [repository.GetUserByUsername] error getting user by username: record not found
+ERROR: 2024/10/18 09:21:03 users.go:41: [repository.GetUserByUsernameAndPassword] error getting user by username and password: record not found

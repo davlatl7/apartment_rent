@@ -111,3 +111,144 @@ Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-
 [GIN] 2024/09/27 - 17:19:22 | 201 |     10.7846ms |       127.0.0.1 | POST     "/announcements/favorite/8"
 [GIN] 2024/09/27 - 17:19:29 | 401 |            0s |       127.0.0.1 | GET      "/announcements/favorites"
 [GIN] 2024/09/27 - 17:19:34 | 200 |      6.5971ms |       127.0.0.1 | GET      "/announcements/favorites"
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (3 handlers)
+[GIN-debug] GET    /ping                     --> apartment_rent/pkg/controllers.PingPong (3 handlers)
+[GIN-debug] POST   /auth/sign-up             --> apartment_rent/pkg/controllers.SignUp (3 handlers)
+[GIN-debug] POST   /auth/sign-in             --> apartment_rent/pkg/controllers.SignIn (3 handlers)
+[GIN-debug] DELETE /announcements/delete/:id --> apartment_rent/pkg/controllers.DeleteAnnouncement (4 handlers)
+[GIN-debug] DELETE /announcements/review/:id --> apartment_rent/pkg/controllers.DeleteReview (4 handlers)
+[GIN-debug] GET    /users                    --> apartment_rent/pkg/controllers.GetAllUsers (4 handlers)
+[GIN-debug] GET    /users/:id                --> apartment_rent/pkg/controllers.GetUserByID (4 handlers)
+[GIN-debug] POST   /users                    --> apartment_rent/pkg/controllers.CreateUser (4 handlers)
+[GIN-debug] PUT    /users/:id                --> apartment_rent/pkg/controllers.UpdateUser (4 handlers)
+[GIN-debug] DELETE /users/:id                --> apartment_rent/pkg/controllers.DeleteUser (4 handlers)
+[GIN-debug] POST   /users/block/:id          --> apartment_rent/pkg/controllers.BlockUser (4 handlers)
+[GIN-debug] GET    /announcements            --> apartment_rent/pkg/controllers.GetAllAnnouncement (4 handlers)
+[GIN-debug] GET    /announcements/price/:price --> apartment_rent/pkg/controllers.GetAnnouncementByPrice (4 handlers)
+[GIN-debug] POST   /announcements            --> apartment_rent/pkg/controllers.CreateAnnouncement (4 handlers)
+[GIN-debug] PUT    /announcements/:id        --> apartment_rent/pkg/controllers.UpdateAnnouncement (4 handlers)
+[GIN-debug] GET    /announcements/:id        --> apartment_rent/pkg/controllers.GetAnnouncementByID (4 handlers)
+[GIN-debug] GET    /announcements/count_apart/:count_apart --> apartment_rent/pkg/controllers.GetAnnouncementByRooms (4 handlers)
+[GIN-debug] POST   /announcements/review     --> apartment_rent/pkg/controllers.CreateReview (4 handlers)
+[GIN-debug] GET    /announcements/reviews/:id --> apartment_rent/pkg/controllers.GetReviews (4 handlers)
+[GIN-debug] POST   /announcements/favorite/:id --> apartment_rent/pkg/controllers.AddToFavorites (4 handlers)
+[GIN-debug] GET    /announcements/favorites  --> apartment_rent/pkg/controllers.GetFavorites (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on localhost:8181
+[GIN] 2024/09/27 - 18:05:26 | 200 |     15.0646ms |       127.0.0.1 | POST     "/auth/sign-in"
+[GIN] 2024/09/27 - 18:05:46 | 200 |      4.0077ms |       127.0.0.1 | POST     "/auth/sign-in"
+[GIN] 2024/09/27 - 18:06:05 | 201 |     22.9976ms |       127.0.0.1 | POST     "/users"
+[GIN] 2024/09/27 - 18:06:09 | 500 |      7.5056ms |       127.0.0.1 | POST     "/users"
+[GIN] 2024/09/27 - 18:06:21 | 200 |      9.7363ms |       127.0.0.1 | GET      "/users"
+[GIN] 2024/09/27 - 18:06:36 | 200 |      7.8735ms |       127.0.0.1 | GET      "/users/2"
+[GIN] 2024/09/27 - 18:07:02 | 200 |     19.3858ms |       127.0.0.1 | PUT      "/users/4"
+[GIN] 2024/09/27 - 18:07:18 | 200 |     13.0542ms |       127.0.0.1 | DELETE   "/users/2"
+[GIN] 2024/09/27 - 18:07:24 | 200 |     11.2879ms |       127.0.0.1 | DELETE   "/users/2"
+[GIN] 2024/09/27 - 18:07:28 | 200 |      8.4487ms |       127.0.0.1 | DELETE   "/users/2"
+[GIN] 2024/09/27 - 18:08:19 | 200 |     11.3254ms |       127.0.0.1 | POST     "/users/block/3"
+[GIN] 2024/09/27 - 18:08:26 | 200 |     12.5722ms |       127.0.0.1 | POST     "/users/block/2"
+[GIN] 2024/09/27 - 18:08:53 | 200 |     13.4759ms |       127.0.0.1 | PUT      "/users/2"
+[GIN] 2024/09/27 - 18:09:15 | 200 |      4.8583ms |       127.0.0.1 | POST     "/auth/sign-in"
+[GIN] 2024/09/27 - 18:09:42 | 200 |      8.0009ms |       127.0.0.1 | POST     "/auth/sign-in"
+[GIN] 2024/09/27 - 18:10:20 | 201 |     15.3078ms |       127.0.0.1 | POST     "/announcements"
+[GIN] 2024/09/27 - 18:10:33 | 200 |     14.5365ms |       127.0.0.1 | GET      "/announcements"
+[GIN] 2024/09/27 - 18:11:20 | 200 |      8.1537ms |       127.0.0.1 | GET      "/announcements/price/6000"
+[GIN] 2024/09/27 - 18:12:29 | 403 |      6.1856ms |       127.0.0.1 | PUT      "/announcements/5"
+[GIN] 2024/09/27 - 18:13:49 | 201 |      9.8119ms |       127.0.0.1 | POST     "/announcements"
+[GIN] 2024/09/27 - 18:14:18 | 200 |     22.8632ms |       127.0.0.1 | PUT      "/announcements/11"
+[GIN] 2024/09/27 - 18:14:43 | 200 |      2.5129ms |       127.0.0.1 | PUT      "/announcements/11"
+[GIN] 2024/09/27 - 18:15:12 | 200 |     14.7527ms |       127.0.0.1 | PUT      "/announcements/11"
+[GIN] 2024/09/27 - 18:15:31 | 401 |      5.9572ms |       127.0.0.1 | DELETE   "/announcements/delete/3"
+[GIN] 2024/09/27 - 18:16:29 | 201 |     12.9584ms |       127.0.0.1 | POST     "/announcements/review"
+[GIN] 2024/09/27 - 18:16:36 | 201 |      10.283ms |       127.0.0.1 | POST     "/announcements/review"
+[GIN] 2024/09/27 - 18:16:56 | 200 |      5.6705ms |       127.0.0.1 | GET      "/announcements/reviews/11"
+[GIN] 2024/09/27 - 18:17:42 | 401 |            0s |       127.0.0.1 | DELETE   "/announcements/review/2"
+[GIN] 2024/09/27 - 18:17:48 | 401 |      1.3052ms |       127.0.0.1 | DELETE   "/announcements/review/2"
+[GIN] 2024/09/27 - 18:18:29 | 201 |     12.7492ms |       127.0.0.1 | POST     "/announcements/favorite/11"
+[GIN] 2024/09/27 - 18:18:42 | 200 |      8.8843ms |       127.0.0.1 | GET      "/announcements/favorites"
+[GIN] 2024/09/27 - 18:18:50 | 200 |      1.5116ms |       127.0.0.1 | GET      "/announcements/favorites"
+[GIN] 2024/09/27 - 18:19:00 | 201 |     14.5067ms |       127.0.0.1 | POST     "/announcements/favorite/11"
+[GIN] 2024/09/27 - 18:19:05 | 200 |      7.3942ms |       127.0.0.1 | GET      "/announcements/favorites"
+[GIN] 2024/09/27 - 18:19:42 | 401 |      6.2156ms |       127.0.0.1 | GET      "/announcements/7"
+[GIN] 2024/09/27 - 18:19:50 | 200 |      3.3905ms |       127.0.0.1 | GET      "/announcements/7"
+[GIN] 2024/09/27 - 18:19:58 | 200 |      8.7917ms |       127.0.0.1 | GET      "/announcements/7"
+[GIN] 2024/09/27 - 18:20:13 | 200 |      3.5338ms |       127.0.0.1 | POST     "/auth/sign-in"
+[GIN] 2024/09/27 - 18:20:23 | 200 |     11.9777ms |       127.0.0.1 | GET      "/announcements/7"
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (3 handlers)
+[GIN-debug] GET    /ping                     --> apartment_rent/pkg/controllers.PingPong (3 handlers)
+[GIN-debug] POST   /auth/sign-up             --> apartment_rent/pkg/controllers.SignUp (3 handlers)
+[GIN-debug] POST   /auth/sign-in             --> apartment_rent/pkg/controllers.SignIn (3 handlers)
+[GIN-debug] DELETE /announcements/delete/:id --> apartment_rent/pkg/controllers.DeleteAnnouncement (4 handlers)
+[GIN-debug] DELETE /announcements/review/:id --> apartment_rent/pkg/controllers.DeleteReview (4 handlers)
+[GIN-debug] GET    /users                    --> apartment_rent/pkg/controllers.GetAllUsers (4 handlers)
+[GIN-debug] GET    /users/:id                --> apartment_rent/pkg/controllers.GetUserByID (4 handlers)
+[GIN-debug] POST   /users                    --> apartment_rent/pkg/controllers.CreateUser (4 handlers)
+[GIN-debug] PUT    /users/:id                --> apartment_rent/pkg/controllers.UpdateUser (4 handlers)
+[GIN-debug] DELETE /users/:id                --> apartment_rent/pkg/controllers.DeleteUser (4 handlers)
+[GIN-debug] POST   /users/block/:id          --> apartment_rent/pkg/controllers.BlockUser (4 handlers)
+[GIN-debug] GET    /announcements            --> apartment_rent/pkg/controllers.GetAllAnnouncement (4 handlers)
+[GIN-debug] GET    /announcements/price/:price --> apartment_rent/pkg/controllers.GetAnnouncementByPrice (4 handlers)
+[GIN-debug] POST   /announcements            --> apartment_rent/pkg/controllers.CreateAnnouncement (4 handlers)
+[GIN-debug] PUT    /announcements/:id        --> apartment_rent/pkg/controllers.UpdateAnnouncement (4 handlers)
+[GIN-debug] GET    /announcements/:id        --> apartment_rent/pkg/controllers.GetAnnouncementByID (4 handlers)
+[GIN-debug] GET    /announcements/count_apart/:count_apart --> apartment_rent/pkg/controllers.GetAnnouncementByRooms (4 handlers)
+[GIN-debug] POST   /announcements/review     --> apartment_rent/pkg/controllers.CreateReview (4 handlers)
+[GIN-debug] GET    /announcements/reviews/:id --> apartment_rent/pkg/controllers.GetReviews (4 handlers)
+[GIN-debug] POST   /announcements/favorite/:id --> apartment_rent/pkg/controllers.AddToFavorites (4 handlers)
+[GIN-debug] GET    /announcements/favorites  --> apartment_rent/pkg/controllers.GetFavorites (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on localhost:8181
+[GIN] 2024/10/18 - 09:21:03 | 400 |     87.7889ms |       127.0.0.1 | POST     "/auth/sign-in"
+[GIN] 2024/10/18 - 09:21:14 | 200 |     12.9842ms |       127.0.0.1 | POST     "/auth/sign-in"
+[GIN] 2024/10/18 - 09:21:32 | 200 |     12.1186ms |       127.0.0.1 | GET      "/users"
+[GIN] 2024/10/18 - 09:22:16 | 200 |      7.9284ms |       127.0.0.1 | POST     "/auth/sign-in"
+[GIN] 2024/10/18 - 09:22:39 | 200 |     12.4543ms |       127.0.0.1 | GET      "/announcements"
+[GIN] 2024/10/18 - 09:22:57 | 201 |      25.308ms |       127.0.0.1 | POST     "/announcements"
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (3 handlers)
+[GIN-debug] GET    /ping                     --> apartment_rent/pkg/controllers.PingPong (3 handlers)
+[GIN-debug] POST   /auth/sign-up             --> apartment_rent/pkg/controllers.SignUp (3 handlers)
+[GIN-debug] POST   /auth/sign-in             --> apartment_rent/pkg/controllers.SignIn (3 handlers)
+[GIN-debug] DELETE /announcements/delete/:id --> apartment_rent/pkg/controllers.DeleteAnnouncement (4 handlers)
+[GIN-debug] DELETE /announcements/review/:id --> apartment_rent/pkg/controllers.DeleteReview (4 handlers)
+[GIN-debug] GET    /users                    --> apartment_rent/pkg/controllers.GetAllUsers (4 handlers)
+[GIN-debug] GET    /users/:id                --> apartment_rent/pkg/controllers.GetUserByID (4 handlers)
+[GIN-debug] POST   /users                    --> apartment_rent/pkg/controllers.CreateUser (4 handlers)
+[GIN-debug] PUT    /users/:id                --> apartment_rent/pkg/controllers.UpdateUser (4 handlers)
+[GIN-debug] DELETE /users/:id                --> apartment_rent/pkg/controllers.DeleteUser (4 handlers)
+[GIN-debug] POST   /users/block/:id          --> apartment_rent/pkg/controllers.BlockUser (4 handlers)
+[GIN-debug] GET    /announcements            --> apartment_rent/pkg/controllers.GetAllAnnouncement (4 handlers)
+[GIN-debug] GET    /announcements/price/:price --> apartment_rent/pkg/controllers.GetAnnouncementByPrice (4 handlers)
+[GIN-debug] POST   /announcements            --> apartment_rent/pkg/controllers.CreateAnnouncement (4 handlers)
+[GIN-debug] PUT    /announcements/:id        --> apartment_rent/pkg/controllers.UpdateAnnouncement (4 handlers)
+[GIN-debug] GET    /announcements/:id        --> apartment_rent/pkg/controllers.GetAnnouncementByID (4 handlers)
+[GIN-debug] GET    /announcements/count_apart/:count_apart --> apartment_rent/pkg/controllers.GetAnnouncementByRooms (4 handlers)
+[GIN-debug] POST   /announcements/review     --> apartment_rent/pkg/controllers.CreateReview (4 handlers)
+[GIN-debug] GET    /announcements/reviews/:id --> apartment_rent/pkg/controllers.GetReviews (4 handlers)
+[GIN-debug] POST   /announcements/favorite/:id --> apartment_rent/pkg/controllers.AddToFavorites (4 handlers)
+[GIN-debug] GET    /announcements/favorites  --> apartment_rent/pkg/controllers.GetFavorites (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on localhost:8181
+[GIN] 2024/10/18 - 09:25:44 | 200 |      1.9138ms |       127.0.0.1 | POST     "/auth/sign-in"
+[GIN] 2024/10/18 - 09:25:58 | 403 |      6.8621ms |       127.0.0.1 | GET      "/announcements"
+[GIN] 2024/10/18 - 09:26:23 | 403 |      7.9411ms |       127.0.0.1 | GET      "/announcements/favorites"
